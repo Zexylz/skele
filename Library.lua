@@ -2224,7 +2224,8 @@ function Library:Notify(Text, Time)
     end);
 end;
 
-function Library:CreateWindow(WindowTitle)
+function Library:CreateWindow(WindowTitle, windowSize)
+    local defaultSize = UDim2.fromOffset(550, 600); -- Default size if not specified
     local Window = {
         Tabs = {};
     };
@@ -2233,7 +2234,7 @@ function Library:CreateWindow(WindowTitle)
         BackgroundColor3 = Color3.new(0, 0, 0);
         BorderSizePixel = 0;
         Position = UDim2.new(0, 175, 0, 50);
-        Size = UDim2.new(0, 550, 0, 600);
+        Size = windowSize or defaultSize; -- Use specified size or default
         Visible = false;
         ZIndex = 1;
         Parent = ScreenGui;
@@ -2246,7 +2247,7 @@ function Library:CreateWindow(WindowTitle)
         BorderColor3 = Library.AccentColor;
         BorderMode = Enum.BorderMode.Inset;
         Position = UDim2.new(0, 1, 0, 1);
-        Size = UDim2.new(1, -2, 1, -2);
+        Size = UDim2.new(1, -2, 1, -2); -- Adjusted to be relative to Outer's size
         ZIndex = 1;
         Parent = Outer;
     });
@@ -2258,7 +2259,7 @@ function Library:CreateWindow(WindowTitle)
 
     local WindowLabel = Library:CreateLabel({
         Position = UDim2.new(0, 7, 0, 0);
-        Size = UDim2.new(0, 0, 0, 25);
+        Size = UDim2.new(0, 0, 0, 25); -- Adjusted to be relative to Inner's size
         Text = WindowTitle or '';
         TextXAlignment = Enum.TextXAlignment.Left;
         ZIndex = 1;
@@ -2269,7 +2270,7 @@ function Library:CreateWindow(WindowTitle)
         BackgroundColor3 = Library.BackgroundColor;
         BorderColor3 = Library.OutlineColor;
         Position = UDim2.new(0, 8, 0, 25);
-        Size = UDim2.new(1, -16, 1, -33);
+        Size = UDim2.new(1, -16, 1, -33); -- Adjusted to be relative to Inner's size
         ZIndex = 1;
         Parent = Inner;
     });
@@ -2284,7 +2285,7 @@ function Library:CreateWindow(WindowTitle)
         BorderColor3 = Color3.new(0, 0, 0);
         BorderMode = Enum.BorderMode.Inset;
         Position = UDim2.new(0, 0, 0, 0);
-        Size = UDim2.new(1, 0, 1, 0);
+        Size = UDim2.new(1, 0, 1, 0); -- Adjusted to be relative to MainSectionOuter's size
         ZIndex = 1;
         Parent = MainSectionOuter;
     });
@@ -2296,7 +2297,7 @@ function Library:CreateWindow(WindowTitle)
     local TabArea = Library:Create('Frame', {
         BackgroundTransparency = 1;
         Position = UDim2.new(0, 8, 0, 8);
-        Size = UDim2.new(1, -16, 0, 21);
+        Size = UDim2.new(1, -16, 0, 21); -- Adjusted to be relative to MainSectionInner's size
         ZIndex = 1;
         Parent = MainSectionInner;
     });
@@ -2312,7 +2313,7 @@ function Library:CreateWindow(WindowTitle)
         BackgroundColor3 = Library.MainColor;
         BorderColor3 = Library.OutlineColor;
         Position = UDim2.new(0, 8, 0, 30);
-        Size = UDim2.new(1, -16, 1, -38);
+        Size = UDim2.new(1, -16, 1, -38); -- Adjusted to be relative to MainSectionInner's size
         ZIndex = 2;
         Parent = MainSectionInner;
     });
